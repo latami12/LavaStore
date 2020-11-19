@@ -25,8 +25,8 @@ Route::post('login', 'UserController@login');
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('product', 'ProductController@index'); // Tampil product
     Route::post('/product', 'ProductController@store'); // Tambah Data
-    Route::get('/product/{id}', 'ProductController@show'); // Tampilkan data dengan id
-    Route::patch('/prodcuct/{id}', 'ProductController@update'); // Update data
+    // Route::get('/product/{id}', 'ProductController@show'); // Tampilkan data dengan id
+    Route::patch('product/{id}', 'ProductController@update'); // Update data
     Route::delete('/product/{id}', 'ProductController@destroy'); // Hapus data 
     Route::get('profile', 'ProfileController@index');
 });
