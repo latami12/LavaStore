@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="{{ asset('style/assets/css/cs-skin-elastic.css')}}">
     <link rel="stylesheet" href="{{ asset('style/assets/scss/style.css')}}">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <style>
+        h1 {
+            font-family: 'Times New Roman', Times, serif; 
+        }
+    </style>
 </head>
 <body>
         <!-- Left Panel -->
@@ -27,8 +33,8 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                <a class="navbar-brand" href="./"><h1>Lava<i class="fa fa-opencart"></i>Store</h1></a>
+                <a class="navbar-brand hidden" href="./"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -37,11 +43,14 @@
                         <a href="#"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Product</a>
+                    {{-- <li class="menu-item-has-children dropdown">
+                        <a href="{{ route('product.index')}}" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Product</a>
+                    </li> --}}
+                    <li>
+                        <a href="{{ route('product.index') }}"> <i class="menu-icon fa fa-laptop"></i>Product</a>
                     </li>
                     <li>
-                        <a href="#"> <i class="menu-icon fa fa-server"></i>Categories</a>
+                        <a href="{{ route('category.index') }}"> <i class="menu-icon fa fa-server"></i>Categories</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -129,7 +138,7 @@
 
                     <div class="language-select dropdown" id="language-select">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
-                            <i class="flag-icon flag-icon-us"></i>
+                            <i class="flag-icon flag-icon-id"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="language" >
                             <div class="dropdown-item">

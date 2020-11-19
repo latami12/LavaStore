@@ -140,11 +140,13 @@ class ProductController extends Controller
             $product
         ]);
     }
+
     public function create()
     {
         $category = Category::orderBy('name', 'DESC')->get();
         return view('products.create', compact('category'));
     }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -185,6 +187,7 @@ class ProductController extends Controller
             return $this->sendResponse('Error', 'Gagal menambah data', null, 500);
         }
     }
+
     public function destroy($id)
     {
         $product = Product::find($id);
@@ -206,6 +209,7 @@ class ProductController extends Controller
         }
         return $this->sendResponse('Success', 'Berhasil mengambil data', $product, 200);
     }
+
     public function update(Request $request, $id)
     {
 
@@ -250,6 +254,7 @@ class ProductController extends Controller
             return $this->sendResponse('Error', 'Gagal mengganti data', null, 500);
         }
     }
+    
      public function search(Request $request)
     {
 

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index($id)
+    public function index()
     {
         $category = Category::with(['parent'])->orderBy('created_at', 'DESC')->paginate(10);
         $parent = Category::getParent()->orderBy('name', 'ASC')->get();

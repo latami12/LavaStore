@@ -25,3 +25,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin', function(){
     return view('main');
 });
+Route::resource('category', 'CategoryController')->except('create', 'show');
+Route::resource('product', 'ProductWebController');
