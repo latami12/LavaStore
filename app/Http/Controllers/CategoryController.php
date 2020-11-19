@@ -23,7 +23,7 @@ class CategoryController extends Controller
         ]);
 
         $request->request->add(['slug' => $request->name]);
-        Category::create($request->except('_token'));
+        // Category::create($request->except('_token'));
         return redirect(route('category.index'))->with(['success' => 'Kategori Baru Ditambahkan!']);
     }
 
