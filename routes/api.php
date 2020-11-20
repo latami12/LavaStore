@@ -29,5 +29,6 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::patch('product/{id}', 'ProductController@update'); // Update data
     Route::delete('/product/{id}', 'ProductController@destroy'); // Hapus data 
     Route::get('profile', 'ProfileController@index');
+    Route::post('order/{id}', 'OrderController@order');
 });
 

@@ -33,6 +33,6 @@ class ProfileController extends Controller
      }
      
      $user->update();
-        return $this->sendResponse('Success', 'profile anda di upgrade pak eko', $user, 500);
+        return $this->sendResponse('Success', 'profile anda telah di upgarde    ', $user, 200);
     }
 }
