@@ -87,4 +87,47 @@ class OrderController extends Controller
 
         return $this->sendResponse('Success', 'Berhasil diorder', $product, 200);      
     }
+
+    public function chechkout()
+    {
+        $order = Order::where('customer_id', Auth::user()->id)->where('status', 0)->first();
+        if (!empty($order)) {
+            # code...
+            $order_detail = OrderDetail::where('order_id', $order->id)->get();
+        }
+        
+        return $this->sendResponse('Success', 'Terinput', compact('order','order_detail'), 200);
+    }
+    
+    public function delete($id)
+    {
+        $order_detail = OrderDetail::where('id', $id)->first();
+        
+        // mengurangi orderan
+        $order = Order::where('id', $order_detail->order_id)->first();
+        $order->harga = $order->harga-$order_detail->harga;
+        $order->update();
+        
+        $order_detail->delete();
+        
+        return $this->sendResponse('Success', 'Terhapus', NULL, 200);
+    }
+    
+    public function konfirmasi()
+    {
+        $order = Order::where('customer_id', Auth::user()->id)->where('status', 0)->first();
+        $order_id = $order->id;
+        $order->status = 1;
+        $order->update();
+
+        $order_detail = OrderDetail::where('order_id', $order_id)->get();
+        foreach ($order_detail as $order_detail)
+        {
+            $product = Product::where('id', $order_detail->product_id)->first();
+            $product->status = $product->status-$order_detail->jumlah;
+            $product->update();
+        }
+
+        return $this->sendResponse('Success', 'Terkonfirmasi boy', $order, 200);
+    }
 }
