@@ -21,6 +21,9 @@
         h1 {
             font-family: 'Times New Roman', Times, serif; 
         }
+        th {
+            font-family: 'Times New Roman', Times, serif; 
+        }
     </style>
 </head>
 <body>
@@ -46,6 +49,9 @@
                     {{-- <li class="menu-item-has-children dropdown">
                         <a href="{{ route('product.index')}}" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Product</a>
                     </li> --}}
+                    <li>
+                        <a href="{{ route('profile.index') }}"> <i class="menu-icon fa fa-group"></i>Users</a>
+                    </li>
                     <li>
                         <a href="{{ route('product.index') }}"> <i class="menu-icon fa fa-laptop"></i>Product</a>
                     </li>

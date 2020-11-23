@@ -49,6 +49,7 @@ class OrderController extends Controller
             $order->tanggal = $tanggal;
             $order->status = 0;
             $order->harga = 0;
+            $order->kode = mt_rand('1000', '9999');
             
             $order->save();
         }
@@ -65,7 +66,7 @@ class OrderController extends Controller
             $order_detail->product_id = $product->id;
             $order_detail->order_id = $new_order->id;
             $order_detail->jumlah_barang = $request->jumlah_barang;
-            $order_detail->harga = $product->harga*$request->jumlah_barang;
+            $order_detail->harga = $product->price*$request->jumlah_barang;
             
             $order_detail->save();
         } else {
@@ -73,7 +74,7 @@ class OrderController extends Controller
 
             $order_detail->jumlah_barang = $order_detail->jumlah_barang*$request->jumlah_barang;
             // harga sekarang
-            $harga_new_order_detail = $product->harga*$request->jumlah_barang;
+            $harga_new_order_detail = $product->price*$request->jumlah_barang;
 
             $order_detail->harga = $order_detail->harga+$harga_new_order_detail;
             
@@ -82,7 +83,7 @@ class OrderController extends Controller
 
         // jumlah total 
         $order = Order::where('customer_id', Auth::user()->id)->where('status', 0)->first();
-        $order->harga = $order->harga+$product->harga*$request->jumlah_barang;
+        $order->harga = $order->harga+$product->price*$request->jumlah_barang;
         $order->update();
 
         return $this->sendResponse('Success', 'Berhasil diorder', $product, 200);      

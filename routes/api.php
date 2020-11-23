@@ -27,11 +27,16 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::post('/product', 'ProductController@store'); // Tambah Data
     // Route::get('/product/{id}', 'ProductController@show'); // Tampilkan data dengan id
     Route::patch('product/{id}', 'ProductController@update'); // Update data
-    Route::delete('/product/{id}', 'ProductController@destroy'); // Hapus data 
-    Route::get('profile', 'ProfileController@index');
+    Route::delete('/product/{id}', 'ProductController@destroy'); // Hapus data
+
+    Route::get('profile', 'ProfileController@index'); // profile
+
     Route::post('order/{id}', 'OrderController@order'); // check in
     Route::get('checkout', 'OrderController@checkout'); // check out
     Route::delete('checkout/{id}', 'OrderController@delete');
-    Route::get('checkout', 'OrderController@konfirmasi'); // konfirmasi check out
+    Route::post('konfirmasi', 'OrderController@konfirmasi'); // konfirmasi check out
+    
+    Route::get('history', 'HistoryController@index');
+    Route::get('history/{id}', 'HistoryController@detail');
 });
 

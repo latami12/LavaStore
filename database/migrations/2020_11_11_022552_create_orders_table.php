@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->date('tanggal');
             $table->string('status');
             $table->integer('harga');
+            $table->integer('kode');
             $table->timestamps();
         });
     }

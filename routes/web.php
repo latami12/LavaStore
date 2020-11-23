@@ -27,3 +27,6 @@ Route::get('admin', function(){
 });
 Route::resource('category', 'CategoryController')->except('create', 'show');
 Route::resource('product', 'ProductWebController');
+
+Route::resource('profile', 'ProfileWebController');
+Route::patch('profile', 'ProfileWebController@update');

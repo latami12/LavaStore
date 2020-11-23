@@ -66,9 +66,10 @@
                                       </tr>
                                   </thead>
                                   <tbody>
+                                      <?php $no = 1; ?>
                                       @forelse ($category as $val)
                                       <tr>
-                                          <td></td>
+                                          <td>{{ $no++ }}</td>
                                           <td><strong>{{ $val->name }}</strong></td>
                                           <td>{{ $val->parent ? $val->parent->name:'-' }}</td>
                                           <td>{{ $val->created_at->format('d-m-Y') }}</td>
