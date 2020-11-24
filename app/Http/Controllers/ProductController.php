@@ -124,6 +124,7 @@ use Illuminate\Support\Str;
 use File;
 use Illuminate\Support\Facades\Validator;
 use DB;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\DB as FacadesDB;
 
 class ProductController extends Controller
@@ -160,14 +161,36 @@ class ProductController extends Controller
         if ($validator->fails()) {
             return response($validator->errors());
         }
-        $filename = null;
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
+        
+        // if ($request->hasFile('image')) {
+        //     $file = $request->file('image');
 
-            $filename = time() . Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
-            // $file->storeAs('public/products', $filename);
-            $request->image->move(public_path('product'), $filename);
+        //     $filename = time() . Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
+        //     // $file->storeAs('public/products', $filename);
+        //     $request->image->move(public_path('product'), $filename);
+        // }
+
+        $filename = null;
+
+        if ($request->image) {
+            // $image = $request->image->getClientOriginalName() . '-' . time() . '.' . $request->image->extension();
+            // $request->image->move(public_path('img'), $image);
+
+            $img = base64_encode(file_get_contents($request->image));
+            $client = new Client();
+            $res = $client->request('POST', 'https://freeimage.host/api/1/upload', [
+                'form_params' => [
+                    'key' => '6d207e02198a847aa98d0a2a901485a5',
+                    'action' => 'upload',
+                    'source' => $img,
+                    'format' => 'json',
+                ]
+            ]);
+            $array = json_decode($res->getBody()->getContents());
+            // dd($array);
+            $$filename = $array->image->file->resource->chain->image;
         }
+        
         $product = Product::create([
             'name' => $request->name,
             'slug' => $request->name,
@@ -226,14 +249,35 @@ class ProductController extends Controller
         }
 
         $product = Product::find($id); 
-        $filename = $product->image; 
+        // $filename = $product->image; 
 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
-            // $file->storeAs('public/products', $filename);
-            $request->image->move(public_path('product'), $filename);
-            File::delete(storage_path('product/' . $product->image));
+        // if ($request->hasFile('image')) {
+        //     $file = $request->file('image');
+        //     $filename = time() . Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
+        //     // $file->storeAs('public/products', $filename);
+        //     $request->image->move(public_path('product'), $filename);
+        //     File::delete(storage_path('product/' . $product->image));
+        // }
+
+        $filename = null;
+
+        if ($request->image) {
+            // $image = $request->image->getClientOriginalName() . '-' . time() . '.' . $request->image->extension();
+            // $request->image->move(public_path('img'), $image);
+
+            $img = base64_encode(file_get_contents($request->image));
+            $client = new Client();
+            $res = $client->request('POST', 'https://freeimage.host/api/1/upload', [
+                'form_params' => [
+                    'key' => '6d207e02198a847aa98d0a2a901485a5',
+                    'action' => 'upload',
+                    'source' => $img,
+                    'format' => 'json',
+                ]
+            ]);
+            $array = json_decode($res->getBody()->getContents());
+            // dd($array);
+            $filename = $array->image->file->resource->chain->image;
         }
 
         //KEMUDIAN UPDATE PRODUK TERSEBUT
@@ -260,6 +304,6 @@ class ProductController extends Controller
 
         $search = $request->get('search');
         $product = DB::table('product')->where('name', 'LIKE', '%' . $search . '%')->paginate();
-        return view('welcome', compact('blog'));
+        // return view('welcome', compact('blog'));
     }
 }
