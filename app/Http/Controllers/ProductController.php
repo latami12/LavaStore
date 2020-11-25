@@ -190,7 +190,7 @@ class ProductController extends Controller
             // dd($array);
             $filename = $array->image->file->resource->chain->image;
 
-            dd($filename);
+            // dd($filename);
         }
         
         $product = Product::create([
