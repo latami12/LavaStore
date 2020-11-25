@@ -35,4 +35,6 @@ class ProfileController extends Controller
         $user->update();
         return $this->sendResponse('Success', 'profile anda telah di upgrade', [$user], 200);
     }
+
+    
 }

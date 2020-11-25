@@ -188,7 +188,9 @@ class ProductController extends Controller
             ]);
             $array = json_decode($res->getBody()->getContents());
             // dd($array);
-            $$filename = $array->image->file->resource->chain->image;
+            $filename = $array->image->file->resource->chain->image;
+
+            dd($filename);
         }
         
         $product = Product::create([
@@ -278,6 +280,8 @@ class ProductController extends Controller
             $array = json_decode($res->getBody()->getContents());
             // dd($array);
             $filename = $array->image->file->resource->chain->image;
+
+            // dd($filename);
         }
 
         //KEMUDIAN UPDATE PRODUK TERSEBUT
@@ -299,7 +303,7 @@ class ProductController extends Controller
         }
     }
     
-     public function search(Request $request)
+    public function search(Request $request)
     {
 
         $search = $request->get('search');

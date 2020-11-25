@@ -56,7 +56,7 @@
 
                           <div class="table-responsive">
                               <table class="table table-hover table-bordered">
-                                  <thead>
+                                  <thead class="thead-dark">
                                       <tr>
                                           <th>No</th>
                                           <th>Kategori</th>

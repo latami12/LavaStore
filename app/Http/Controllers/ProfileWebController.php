@@ -26,16 +26,16 @@ class ProfileWebController extends Controller
         $user = User::where('id', Auth::user()->id)->first();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->nomor_telpon = $request->nomor_telpon;
+        $user->nomor_telepon = $request->nomor_telepon;
         $user->alamat = $request->alamat;
-        $user->tanggal = $request->tanggal;
+        $user->umur = $request->umur;
         if (!empty($request->password)) {
             $user->password = Hash::make($request->password);
         }
 
         $user->update();
         // return $this->sendResponse('Success', 'profile anda telah di upgrade', [$user], 200);
-        return view('profile.edit', compact('user'));
+        return view('profile.index', compact('user'));
     }
 
     public function destroy($id)
@@ -46,5 +46,18 @@ class ProfileWebController extends Controller
             return redirect(route('profile.index'))->with(['Success' => 'Profile Dihapus!']);
         }
         return redirect(route('profile.index'))->with(['Error' => 'Profile Ini Memiliki Anak Kategori!']);
+    }
+
+    public function show($id)
+    {
+    }
+
+    public function search(Request $request)
+    {
+
+        $search = $request->get('search');
+        $user = DB::table('user')->where('name', 'LIKE', '%' . $search . '%')->paginate();
+
+        return view('profile.index', compact('user'));
     }
 }

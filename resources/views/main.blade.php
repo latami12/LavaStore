@@ -50,13 +50,13 @@
                         <a href="{{ route('product.index')}}" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Product</a>
                     </li> --}}
                     <li>
-                        <a href="{{ route('profile.index') }}"> <i class="menu-icon fa fa-group"></i>Users</a>
+                        <a href="{{ route('category.index') }}"> <i class="menu-icon fa fa-server"></i>Categories</a>
                     </li>
                     <li>
                         <a href="{{ route('product.index') }}"> <i class="menu-icon fa fa-laptop"></i>Product</a>
                     </li>
                     <li>
-                        <a href="{{ route('category.index') }}"> <i class="menu-icon fa fa-server"></i>Categories</a>
+                        <a href="{{ route('profile.index') }}"> <i class="menu-icon fa fa-group"></i>Users</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
