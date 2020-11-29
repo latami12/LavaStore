@@ -53,7 +53,7 @@
                         <a href="{{ route('category.index') }}"> <i class="menu-icon fa fa-server"></i>Categories</a>
                     </li>
                     <li>
-                        <a href="{{ route('product.index') }}"> <i class="menu-icon fa fa-laptop"></i>Product</a>
+                        <a href="{{ route('produk.index') }}"> <i class="menu-icon fa fa-laptop"></i>Produk</a>
                     </li>
                     <li>
                         <a href="{{ route('profile.index') }}"> <i class="menu-icon fa fa-group"></i>Users</a>

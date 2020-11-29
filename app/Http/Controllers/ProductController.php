@@ -142,6 +142,13 @@ class ProductController extends Controller
         ]);
     }
 
+    public function show($id)
+    {
+        $product = Product::where('user_id', $id)->get();
+        
+        return $this->sendResponse('Success', 'Tampilan', $product, 200);
+    }
+
     public function create()
     {
         $category = Category::orderBy('name', 'DESC')->get();
@@ -152,6 +159,7 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:100',
+            'user_id' => 'required',
             'description' => 'required',
             'category_id' => '|exists:categories,id',
             'price' => 'required|integer',
@@ -195,6 +203,7 @@ class ProductController extends Controller
         
         $product = Product::create([
             'name' => $request->name,
+            'user_id' => $request->user_id,
             'slug' => $request->name,
             'category_id' => $request->category_id,
             'description' => $request->description,
