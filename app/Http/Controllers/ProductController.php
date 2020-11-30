@@ -1,119 +1,5 @@
 <?php
 
-// namespace App\Http\Controllers;
-
-// use App\Product;
-// use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Validator;
-
-// class ProductController extends Controller
-// {
-//     public function index()
-//     {
-//         $product = Product::all();
-//         if (!$product) {
-//             # code...
-//             return $this->sendResponse('Error', 'Not Found', NULL, 404);
-//         }
-//         return $this->sendResponse('Success', 'data found', $product, 200);
-//     }
-
-//     public function store(Request $request, Product $products)
-//     {
-//         $validator = Validator::make($request->all(), [
-//             'name' => 'required|string|max:100',
-//             'category_id' => 'required|exists:category,id',
-//             'description' => 'required|string',
-//             'image' => 'required|mimes:png,jpeg,jpg',
-//             'price' => 'required|integer',
-//             'weight' => 'required|integer'
-//         ]);
-
-//         if ($validator->fails()) {
-//             # code...
-//             return response($validator->errors());
-//         }
-//         $products->name = $request->name;
-//         $products->category_id = $request->category_id;
-//         $products->description = $request->description;
-//         $products->image = $request->image;
-//         $products->price = $request->price;
-//         $products->weight = $request->weight;
-
-//         try {
-//             $products->save();
-            
-//             return $this->sendResponse('Success', 'Data Found', $products, 200);
-//         } catch (\Throwable $th) {
-//             //throw $th;
-//             return $this->sendResponse('Error', 'Data not found', NULL, 404);
-//         }
-//     }
-
-//     public function show($id)
-//     {
-//         $product = Product::find($id);
-
-//         if (!$product) {
-//             # code...
-//             return $this->sendResponse('Error', 'Not Found', NULL, 404);
-//         }
-//         return $this->sendResponse('Success', 'Data ditampilkan', $product, 200);
-//     }
-
-//     public function destroy($id)
-//     {
-//         $product = Product::find($id);
-
-//         if ($product) {
-//             # code...
-//             $product->delete();
-//             return $this->sendResponse('Success', 'deleted successfully', $product, 200);
-//         }
-//         return $this->sendResponse('Error', 'not erased', NULL, 404);
-//     }
-
-//     public function update(Request $request, $id)
-//     {
-//         $validator = Validator::make($request->all(),[
-//             'name' => 'required|string|max:100',
-//             'category_id' => 'required|exists:categories,id',
-//             'description' => 'required|text',
-//             'image' => 'required|mimes:png,jpeg,jpg',
-//             'price' => 'required|integer',
-//             'weight' => 'required|integer'
-//         ]);
-
-//         if ($validator->fails()) {
-//             # code...
-//             return response($validator->errors());
-//         }
-
-//         $products = Product::find($id);
-
-//         if (!$products) {
-//             # code...
-//             return $this->sendResponse('Error', 'ID tidak ditemukan', NULL, 404);
-//         }
-
-//         $products->name = $request->name;
-//         $products->category_id = $request->category_id;
-//         $products->description = $request->description;
-//         $products->image = $request->image;
-//         $products->price = $request->price;
-//         $products->weight = $request->weight;
-
-//         try {
-//             $products->save();
-
-//             return $this->sendResponse('Success', 'Berhasil di Update', $products, 200);
-//         } catch (\Throwable $th) {
-//             return $this->sendResponse('Error', 'Gagal TERUPDATE', NULL, 404);
-//         }
-//     }
-// }
-
-
 
 namespace App\Http\Controllers;
 
@@ -147,6 +33,16 @@ class ProductController extends Controller
         $product = Product::where('user_id', $id)->get();
         
         return $this->sendResponse('Success', 'Tampilan', $product, 200);
+    }
+
+    public function watch($id)
+    {
+        $product = product::find($id);
+        if (!$product) {
+
+            return $this->sendResponse('Error', 'Gagal mengambil data', null, 500);
+        }
+        return $this->sendResponse('Success', 'Berhasil mengambil data', $product, 200);
     }
 
     public function create()
