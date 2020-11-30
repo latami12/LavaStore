@@ -89,7 +89,7 @@ class OrderController extends Controller
         return $this->sendResponse('Success', 'Berhasil diorder', $product, 200);      
     }
 
-    public function chechkout()
+    public function checkout()
     {
         $order = Order::where('customer_id', Auth::user()->id)->where('status', 0)->first();
         if (!empty($order)) {
