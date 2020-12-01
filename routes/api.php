@@ -42,7 +42,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('history', 'HistoryController@index');
     Route::get('history/{id}', 'HistoryController@detail');
 
-    Route::get('allcontact', 'MessagesController@index');
+    Route::get('contact', 'MessagesController@index');
     Route::get('message/{id}', 'MessagesController@getMessage');
     Route::post('message/{id}', 'MessagesController@sendMessage');
 });
