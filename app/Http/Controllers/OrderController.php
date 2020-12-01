@@ -97,7 +97,7 @@ class OrderController extends Controller
             $order_detail = OrderDetail::where('order_id', $order->id)->get();
         }
         
-        return $this->sendResponse('Success', 'Terinput', compact('order','order_detail'), 200);
+        return $this->sendResponse('Success', 'Telah Checkout', compact('order','order_detail'), 200);
     }
     
     public function delete($id)
