@@ -33,6 +33,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('product/watch/{id}', 'ProductController@watch');
 
     Route::get('profile', 'ProfileController@index'); // profile
+    Route::patch('profile/{id}', 'ProfileController@update'); // profile
 
     Route::post('order/{id}', 'OrderController@order'); // check in
     Route::get('checkout', 'OrderController@checkout'); // check out

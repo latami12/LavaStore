@@ -26,11 +26,13 @@ class ProfileController extends Controller
         $user = User::where('id', Auth::user()->id)->first();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->nomor_telpon = $request->nomor_telpon;
+        $user->nomor_telepon = $request->nomor_telepon;
         $user->alamat = $request->alamat;
+        $user->umur = $request->umur;
         if (!empty($request->password)) {
             $user->password = Hash::make($request->password);
         }
+        // $user->save();
 
         $user->update();
         return $this->sendResponse('Success', 'profile anda telah di upgrade', [$user], 200);
