@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Pusher\Pusher;
 
-class HomeController extends Controller
+class MessagesController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
     
     /**
@@ -77,7 +77,7 @@ class HomeController extends Controller
     public function sendMessage(Request $request)
     {
         $from = Auth::id();
-        $to = $request->receiver_id;
+        $to = $request->to;
         $message = $request->message;
 
         $data = new Message();
