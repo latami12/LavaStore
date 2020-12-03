@@ -51,7 +51,7 @@ class HomeController extends Controller
         $data = array_unique(array_merge($from, $to), SORT_REGULAR);
         $user = array_values($data);
 
-        return $this->sendResponse('Success', 'semua kontak', $user, 200);
+        return $this->sendResponse('Success', 'kontak ada', $user, 200);
     }
     //     return view('home', ['users' => $users]);
     // }
