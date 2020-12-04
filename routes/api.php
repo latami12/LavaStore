@@ -29,7 +29,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::patch('product/{id}', 'ProductController@update'); // Update data
     Route::delete('/product/{id}', 'ProductController@destroy'); // Hapus data
     Route::post('product/search', 'ProductController@search'); // Hapus data
-    Route::get('user/product/{id}', 'ProductController@show'); // tampilkan data yg jual
+    // Route::get('user/product/{id}', 'ProductController@show'); // tampilkan data yg jual
     Route::get('product/watch/{id}', 'ProductController@watch');
 
     Route::get('profile', 'ProfileController@index'); // profile

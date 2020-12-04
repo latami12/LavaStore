@@ -35,15 +35,15 @@ class ProductController extends Controller
         return $this->sendResponse('Success', 'Tampilan', $product, 200);
     }
 
-    public function watch($id)
-    {
-        $product = product::find($id);
-        if (!$product) {
+    // public function watch($id)
+    // {
+    //     $product = product::find($id);
+    //     if (!$product) {
 
-            return $this->sendResponse('Error', 'Gagal mengambil data', null, 500);
-        }
-        return $this->sendResponse('Success', 'Berhasil mengambil data', $product, 200);
-    }
+    //         return $this->sendResponse('Error', 'Gagal mengambil data', null, 500);
+    //     }
+    //     return $this->sendResponse('Success', 'Berhasil mengambil data', $product, 200);
+    // }
 
     public function create()
     {
