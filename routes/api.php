@@ -28,9 +28,9 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     // Route::get('/product/{id}', 'ProductController@show'); // Tampilkan data dengan id
     Route::patch('product/{id}', 'ProductController@update'); // Update data
     Route::delete('/product/{id}', 'ProductController@destroy'); // Hapus data
-    Route::post('product/search', 'ProductController@search'); // Hapus data
+    Route::post('product/search', 'ProductController@cari'); // Hapus data
     // Route::get('user/product/{id}', 'ProductController@show'); // tampilkan data yg jual
-    Route::get('product/watch/{id}', 'ProductController@watch');
+    Route::get('product/seller', 'ProductController@getSeller');// tampilkan barang penjual
 
     Route::get('profile', 'ProfileController@index'); // profile
     Route::patch('profile/{id}', 'ProfileController@update'); // profile

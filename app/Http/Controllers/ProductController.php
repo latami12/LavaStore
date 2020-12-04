@@ -207,12 +207,23 @@ class ProductController extends Controller
             return $this->sendResponse('Error', 'Gagal mengganti data', null, 500);
         }
     }
-    
-    public function search(Request $request)
-    {
 
+    public function cari(Request $request)
+    {
         $search = $request->get('search');
-        $product = DB::table('product')->where('name', 'LIKE', '%' . $search . '%')->paginate();
-        // return view('welcome', compact('blog'));
+        $products = DB::table('product')->where('name', 'LIKE', '%' . $search . '%')->paginate();
+
+        if (!$products) {
+            return $this->sendResponse('Error', 'Barang tidak ada', NULL, 404);
+        }
+
+    }
+    public function getSeller()
+    {
+        $products = Product::where('customer_id', Auth::user()->id)->get();
+        if (empty($products)) {
+            return $this->sendResponse('Error', 'tidak ada product', NULL, 404);
+        }
+        return $this->sendResponse('Success', 'product tersedia', $products, 200);
     }
 }
