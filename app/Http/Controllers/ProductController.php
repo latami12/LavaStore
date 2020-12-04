@@ -55,7 +55,7 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:100',
-            'user_id' => 'required',
+            // 'user_id' => 'required',
             'description' => 'required',
             'category_id' => '|exists:categories,id',
             'price' => 'required|integer',
