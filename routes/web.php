@@ -32,3 +32,5 @@ Route::resource('produk', 'ProductWebController');
 Route::resource('profile', 'ProfileWebController');
 Route::patch('profile', 'ProfileWebController@update');
 Route::get('profile/search', 'ProfileWebController@search');
+
+Route::resource('docs', 'DocsController');
