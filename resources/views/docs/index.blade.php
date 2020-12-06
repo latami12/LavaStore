@@ -51,6 +51,10 @@
             padding: 0;
         }
 
+        h3 {
+            font-family: 'Times New Roman', Times, sens-serif;
+        }
+
     </style>
 </head>
 @extends('main')
@@ -62,10 +66,10 @@
 @section('content')
 <body>
 
-    <div class="container">
+    <div class="container mt-3">
 
         <h3 class="center">
-            Tokomu
+            Lava<i class="fa fa-opencart"></i>Store
         </h3>
 
         <ul id="tabs-swipe-demo" class="tabs">
@@ -76,10 +80,7 @@
                 <a href="#shop">shop</a>
             </li>
             <li class="tab col s3">
-                <a href="#product">product</a>
-            </li>
-            <li class="tab col s3">
-                <a href="#cart">cart</a>
+                <a href="#cart">order</a>
             </li>
             <li class="tab col s3">
                 <a href="#transaction">transaction</a>
@@ -140,45 +141,25 @@
                             </tr>
 
                             <tr>
-                                <td>/getAuthenticatedUser</td>
+                                <td>/profile</td>
                                 <td>GET</td>
                                 <td>-</td>
-                                <td>Mengambil data user yang login</td>
+                                <td>Menampilkan Semua User</td>
                             </tr>
 
                             <tr>
-                                <td>/user/{id}</td>
-                                <td>GET</td>
-                                <td>-</td>
-                                <td>Menampilkan user berdasarkan id</td>
-                            </tr>
-
-                            <tr>
-                                <td>/user/detail</td>
-                                <td>POST</td>
-                                <td>user_id, phone_number, address, avatar(optional)</td>
+                                <td>/profile/{id}</td>
+                                <td>PATCH</td>
+                                <td>nomor_telepon, alamat, umur</td>
                                 <td>Mengupdate 'detail' user berdasarkan id</td>
                             </tr>
 
-                            <tr>
-                                <td>/user/update/{id}</td>
-                                <td>POST</td>
-                                <td>name, email</td>
-                                <td>Mengupdate user berdasarkan id</td>
-                            </tr>
 
                             <tr>
-                                <td>/user/delete</td>
-                                <td>POST</td>
+                                <td>/profile/{id}</td>
+                                <td>DELETE</td>
                                 <td>user_id, password</td>
                                 <td>Menghapus user berdasarkan id</td>
-                            </tr>
-
-                            <tr>
-                                <td>/user/password/{id}</td>
-                                <td>PATCH</td>
-                                <td>old_password, password, password_confirmation</td>
-                                <td>Mengubah password user</td>
                             </tr>
 
                         </tbody>
@@ -197,59 +178,52 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>/shop</td>
+                                <td>product</td>
                                 <td>GET</td>
-                                <td>-</td>
-                                <td>Mengambil semua data shop</td>
+                                <td></td>
+                                <td>Menampilkan semua barang yang dijual</td>
                             </tr>
 
                             <tr>
-                                <td>/shop/{id}</td>
-                                <td>GET</td>
-                                <td>-</td>
-                                <td>Mengambil data shop berdasar id shop</td>
-                            </tr>
-
-                            <tr>
-                                <td>/myshop/{user_id}</td>
-                                <td>GET</td>
-                                <td>-</td>
-                                <td>Mengambil data shop berdasar id user yang login</td>
-                            </tr>
-
-                            <tr>
-                                <td>/shop</td>
+                                <td>/product</td>
                                 <td>POST</td>
-                                <td>shop_name, description, image(optional), user_id</td>
-                                <td>Menambahkan / Mengupdate shop</td>
+                                <td>name, description, image, price, weight, status, category_id</td>
+                                <td>Membuat barang</td>
                             </tr>
 
                             <tr>
-                                <td>/shop/{id}/products</td>
-                                <td>GET</td>
+                                <td>/product</td>
+                                <td>PATCH</td>
+                                <td>name, description, image, price, weight, status</td>
+                                <td>MengUpdate barang</td>
+                            </tr>
+
+                            <tr>
+                                <td>/product/{id}</td>
+                                <td>DELETE</td>
                                 <td>-</td>
-                                <td>Mengambil semua produk yang ada di shop berdasar id shop</td>
+                                <td>Menghapus product</td>
                             </tr>
 
                             <tr>
-                                <td>/shop/{shop_id}/category</td>
+                                <td>/product/search</td>
                                 <td>POST</td>
-                                <td>category_id</td>
-                                <td>Mengambil semua produk yang ada di shop berdasar id shop dan id category</td>
+                                <td></td>
+                                <td>Mencari Product</td>
                             </tr>
 
                             <tr>
-                                <td>/shop/{shop_id}/transaction</td>
+                                <td>/product/seller</td>
                                 <td>GET</td>
                                 <td>-</td>
-                                <td>Mengambil data pesanan shop</td>
+                                <td>Mengambil barang sang penjual</td>
                             </tr>
 
                         </tbody>
                     </table>
                 </div>
 
-                <div id="product" class="col s12">
+                {{-- <div id="product" class="col s12">
                     <table class="highlight responsive-table">
                         <thead>
                             <tr>
@@ -303,7 +277,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> --}}
 
                 <div id="cart" class="col s12">
                     <table class="highlight responsive-table">
@@ -317,15 +291,15 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>/user/cart/{user_id}</td>
-                                <td>GET</td>
-                                <td>-</td>
-                                <td>Mengambil data keranjang dari user</td>
+                                <td>/order/{id}</td>
+                                <td>POST</td>
+                                <td>jumlah_barang, customer_id(hidden), tanggal(hidden), status(hidden), harga(hidden)</td>
+                                <td>Memesan barang kekaranjang</td>
                             </tr>
 
                             <tr>
-                                <td>/user/cart</td>
-                                <td>POST</td>
+                                <td>/checkout</td>
+                                <td>GET</td>
                                 <td>product_id, user_id, qty</td>
                                 <td>Menambahkan produk ke keranjang</td>
                             </tr>
