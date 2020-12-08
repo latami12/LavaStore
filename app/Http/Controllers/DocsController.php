@@ -10,4 +10,9 @@ class DocsController extends Controller
     {
         return view('docs.index');
     }
+
+    public function loginAdmin()
+    {
+        return view('admin.login');
+    }
 }

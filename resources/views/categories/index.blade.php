@@ -60,7 +60,7 @@
                                       <tr>
                                           <th>No</th>
                                           <th>Kategori</th>
-                                          <th>Parent</th>
+                                          {{-- <th>Parent</th> --}}
                                           <th>Created At</th>
                                           <th>Aksi</th>
                                       </tr>
@@ -71,7 +71,7 @@
                                       <tr>
                                           <td>{{ $no++ }}</td>
                                           <td><strong>{{ $val->name }}</strong></td>
-                                          <td>{{ $val->parent ? $val->parent->name:'-' }}</td>
+                                          {{-- <td>{{ $val->parent ? $val->parent->name:'-' }}</td> --}}
                                           <td>{{ $val->created_at->format('d-m-Y') }}</td>
                                           <td>
                                               <form action="{{ route('category.destroy', $val->id) }}" method="post">

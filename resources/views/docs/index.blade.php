@@ -60,7 +60,7 @@
 @extends('main')
 
 @section('title')
-    <title>Akun Users</title>
+    <title>Dashboard</title>
 @endsection
 
 @section('content')
@@ -68,7 +68,7 @@
 
     <div class="container mt-3">
 
-        <h3 class="center">
+        <h3 class="center mb-3">
             Lava<i class="fa fa-opencart"></i>Store
         </h3>
 
@@ -87,9 +87,6 @@
             </li>
             <li class="tab col s3">
                 <a href="#payment">payment</a>
-            </li>
-            <li class="tab col s3">
-                <a href="#invoice">invoice</a>
             </li>
             <li class="tab col s3">
                 <a href="#account">account</a>
@@ -140,27 +137,7 @@
                                 <td>-</td>
                             </tr>
 
-                            <tr>
-                                <td>/profile</td>
-                                <td>GET</td>
-                                <td>-</td>
-                                <td>Menampilkan Semua User</td>
-                            </tr>
-
-                            <tr>
-                                <td>/profile/{id}</td>
-                                <td>PATCH</td>
-                                <td>nomor_telepon, alamat, umur</td>
-                                <td>Mengupdate 'detail' user berdasarkan id</td>
-                            </tr>
-
-
-                            <tr>
-                                <td>/profile/{id}</td>
-                                <td>DELETE</td>
-                                <td>user_id, password</td>
-                                <td>Menghapus user berdasarkan id</td>
-                            </tr>
+                            
 
                         </tbody>
                     </table>
@@ -293,30 +270,10 @@
                             <tr>
                                 <td>/order/{id}</td>
                                 <td>POST</td>
-                                <td>jumlah_barang, customer_id(hidden), tanggal(hidden), status(hidden), harga(hidden)</td>
+                                <td>jumlah_barang, produk_id, customer_id(hidden), tanggal(hidden), status(hidden), harga(hidden)</td>
                                 <td>Memesan barang kekaranjang</td>
                             </tr>
 
-                            <tr>
-                                <td>/checkout</td>
-                                <td>GET</td>
-                                <td>product_id, user_id, qty</td>
-                                <td>Menambahkan produk ke keranjang</td>
-                            </tr>
-
-                            <tr>
-                                <td>/user/cart/{id}</td>
-                                <td>DELETE</td>
-                                <td>-</td>
-                                <td>Menghapus produk dari keranjang</td>
-                            </tr>
-
-                            <tr>
-                                <td>/user/cart/{id}</td>
-                                <td>PATCH</td>
-                                <td>qty</td>
-                                <td>Mengubah keranjang</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -333,52 +290,17 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>/user/{user_id}/transaction</td>
+                                <td>/checkout</td>
                                 <td>GET</td>
-                                <td>-</td>
-                                <td>Mengambil data transaksi user</td>
+                                <td>order, order_detail</td>
+                                <td>Checkout barang</td>
                             </tr>
 
                             <tr>
-                                <td>/transaction/{id}</td>
-                                <td>GET</td>
-                                <td>-</td>
-                                <td>Mengambil data transaksi berdasarkan id</td>
-                            </tr>
-
-                            <tr>
-                                <td>/transaction</td>
-                                <td>POST</td>
-                                <td>user_id, product_id, qty</td>
-                                <td>Menambah data transaksi</td>
-                            </tr>
-
-                            <tr>
-                                <td>/transaction/{id}</td>
-                                <td>PATCH</td>
-                                <td>status(belum dibayar, diproses, dikirim, selesai, dibatalkan)</td>
-                                <td>Mengubah status transaksi</td>
-                            </tr>
-
-                            <tr>
-                                <td>/transaction/approve</td>
-                                <td>POST</td>
-                                <td>transaction_id, receipt, delivery_service</td>
-                                <td>Mengkonfirmasi Pembayaran</td>
-                            </tr>
-
-                            <tr>
-                                <td>/shop/{shop_id}/transaction/status</td>
-                                <td>POST</td>
-                                <td>status(belum dibayar, diproses, dikirim, selesai, dibatalkan)</td>
-                                <td>Mengambil list transaksi pada toko berdasarkan statusnya</td>
-                            </tr>
-
-                            <tr>
-                                <td>/transaction/{id}</td>
+                                <td>/checkout/{id}</td>
                                 <td>DELETE</td>
-                                <td>-</td>
-                                <td>Menghapus data transaksi berdasarkan id</td>
+                                <td></td>
+                                <td>Menghapus barang dari keranjang</td>
                             </tr>
 
                         </tbody>
@@ -397,66 +319,10 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>/payment/{id}</td>
-                                <td>GET</td>
-                                <td>-</td>
-                                <td>Mengambil data pembayaran user berdasarkan id</td>
-                            </tr>
-
-                            <tr>
-                                <td>/payment/transaction/{id}</td>
-                                <td>GET</td>
-                                <td>-</td>
-                                <td>Mengambil data pembayaran user berdasarkan id transaksi</td>
-                            </tr>
-
-                            <tr>
-                                <td>/payment</td>
+                                <td>/konfirmasi</td>
                                 <td>POST</td>
-                                <td>transaction_id, image</td>
-                                <td>Menambah bukti pembayaran</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="invoice" class="col s12">
-                    <table class="highlight responsive-table">
-                        <thead>
-                            <tr>
-                                <th>Endpoint</th>
-                                <th>Method</th>
-                                <th>Data</th>
-                                <th>Deskripsi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>/invoice/{id}</td>
-                                <td>GET</td>
-                                <td>-</td>
-                                <td>Mengambil resi berdasarkan id</td>
-                            </tr>
-
-                            <tr>
-                                <td>/invoice/transaction/{id}</td>
-                                <td>GET</td>
-                                <td>-</td>
-                                <td>Mengambil resi berdasarkan id transaksi</td>
-                            </tr>
-
-                            <tr>
-                                <td>/invoice/{id}</td>
-                                <td>PATCH</td>
-                                <td>receipt, delivery_service</td>
-                                <td>Mengupdate resi</td>
-                            </tr>
-
-                            <tr>
-                                <td>/invoice/{id}</td>
-                                <td>DELETE</td>
-                                <td>-</td>
-                                <td>Menghapus resi</td>
+                                <td>customer_id, order_id</td>
+                                <td>Konfirmasu barang yang dibeli</td>
                             </tr>
                         </tbody>
                     </table>
@@ -474,38 +340,25 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>/account/{id}</td>
+                                <td>/profile</td>
                                 <td>GET</td>
                                 <td>-</td>
-                                <td>Mengambil rekening berdasarkan id</td>
+                                <td>Menampilkan Semua User</td>
                             </tr>
 
                             <tr>
-                                <td>/shop/account/{shop_id}</td>
-                                <td>GET</td>
-                                <td>-</td>
-                                <td>Mengambil rekening berdasarkan id</td>
-                            </tr>
-
-                            <tr>
-                                <td>/shop/account</td>
-                                <td>POST</td>
-                                <td>shop_id, nama_rekening, no_rekening, nama_bank, kode_bank</td>
-                                <td>Menambahkan rekening pada shop</td>
-                            </tr>
-
-                            <tr>
-                                <td>/account/{id}</td>
+                                <td>/profile/{id}</td>
                                 <td>PATCH</td>
-                                <td>nama_rekening, no_rekening, nama_bank, kode_bank</td>
-                                <td>Mengubah rekening pada shop</td>
+                                <td>nomor_telepon, alamat, umur</td>
+                                <td>Mengupdate 'detail' user berdasarkan id</td>
                             </tr>
 
+
                             <tr>
-                                <td>/account/{id}</td>
+                                <td>/profile/{id}</td>
                                 <td>DELETE</td>
-                                <td>-</td>
-                                <td>Menghapus rekening berdasarkan id</td>
+                                <td>user_id, password</td>
+                                <td>Menghapus user berdasarkan id</td>
                             </tr>
 
                         </tbody>
@@ -573,10 +426,16 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>/search</td>
+                                <td>/product/search</td>
                                 <td>POST</td>
                                 <td>keyword</td>
-                                <td>Memcari toko atau produk</td>
+                                <td>Memcari barang</td>
+                            </tr>
+                            <tr>
+                                <td>/profile/search</td>
+                                <td>POST</td>
+                                <td>keyword</td>
+                                <td>Memcari profile</td>
                             </tr>
 
                         </tbody>

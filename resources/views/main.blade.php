@@ -85,7 +85,7 @@
                             </form>
                         </div>
 
-                        <div class="dropdown for-notification">
+                        {{-- <div class="dropdown for-notification">
                           <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell"></i>
                             <span class="count bg-danger">5</span>
@@ -125,7 +125,7 @@
                                 </span>
                             </a>
                           </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -136,9 +136,7 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-                                <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                <a class="nav-link" href="/home"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 

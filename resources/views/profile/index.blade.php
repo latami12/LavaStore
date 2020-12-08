@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
         <table class="table table-stripped">
-            <form action="/search" method="get" target="#">
+            <form action="{{ route('profile.index')}}" method="get" target="#">
                 <div class="input-group mt-2 mb-2">
                     <input type="text" class="form-control" placeholder="Users.." name="search" id="keyword" autocomplete="off">
                     <div class="input-group-append">
@@ -50,13 +50,13 @@
                                     <button class="btn btn-danger btn-sm"><i class="fa fa-trash"> | Hapus</i></button>
                                 </form>
                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                        data-target="#exampleModal"> 
+                                        data-target="#exampleModal{{$user->id}}"> 
                                         <i class="fa fa-pencil"> | Edit</i>
                                     </button>
 
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    <div class="modal fade" id="exampleModal{{ $user->id}}" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -70,7 +70,7 @@
                                                 <div class="modal-body">
                                                     {{-- edit akun --}}
                                                     {{-- @for($profile as $profile); --}}
-                                                    <form action="{{ route('profile.update', $user->id) }}" target="#" method="post">
+                                                    <form action="profile/update/{{$user->id}}" target="#" method="post">
                                                         @csrf
                                                         @method('patch')
                                                         <div class="form-group">

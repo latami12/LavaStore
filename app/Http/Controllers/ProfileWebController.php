@@ -17,13 +17,13 @@ class ProfileWebController extends Controller
         return view('profile.index', compact('user'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'password'  => 'confirmed',
         ]);
 
-        $user = User::where('id', Auth::user()->id)->first();
+        $user = User::where('id', $id)->first();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->nomor_telepon = $request->nomor_telepon;
@@ -35,7 +35,7 @@ class ProfileWebController extends Controller
 
         $user->update();
         // return $this->sendResponse('Success', 'profile anda telah di upgrade', [$user], 200);
-        return view('profile.index', compact('user'));
+        return redirect(route('profile.index'))->with(['Success' => 'Profile DIupdate!']);
     }
 
     public function destroy($id)

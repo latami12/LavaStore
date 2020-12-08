@@ -37,4 +37,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+    public function getProfile()
+    {
+        return $this->search();
+    }
 }

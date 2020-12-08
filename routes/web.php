@@ -30,7 +30,8 @@ Route::resource('category', 'CategoryController')->except('create', 'show');
 Route::resource('produk', 'ProductWebController');
 
 Route::resource('profile', 'ProfileWebController');
-Route::patch('profile', 'ProfileWebController@update');
+Route::patch('profile/update/{id}', 'ProfileWebController@update');
 Route::get('profile/search', 'ProfileWebController@search');
 
 Route::resource('docs', 'DocsController');
+Route::get('loginadmin', 'DocsController@loginAdmin');
