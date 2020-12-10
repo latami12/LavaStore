@@ -74,10 +74,10 @@ class MessagesController extends Controller
         return $this->sendResponse('Success', 'ada pesan', $messages, 200);
     }
 
-    public function sendMessage(Request $request)
+    public function sendMessage(Request $request, $id)
     {
         $from = Auth::id();
-        $to = $request->to;
+        $to = $id;
         $message = $request->message;
 
         $data = new Message();
@@ -87,22 +87,22 @@ class MessagesController extends Controller
         $data->is_read = 0; // message will be unread when sending message
         $data->save();
 
-        return $this->sendResponse('Success', 'pesan terkirim', $data, 200);
-
+        
         // pusher 
         $options = [
             'cluster' => 'ap1',
             'useTLS' => true
         ];
-
+        
         $pusher = new Pusher(
-            env('PUSHER_APP_KEY'),
-            env('PUSHER_APP_SECRET'),
-            env('PUSHER_APP_ID'),
+            'c01e3f5990542d7306ec',
+            '988d4408bfe6d3a6b357',
+            '1116993',
             $options
         );
-
-        $data = ['from' => $from, 'to' => $to]; //sending from and to user id when pressed enter
+        
+        // $data = ['from' => $from, 'to' => $to]; //sending from and to user id when pressed enter
         $pusher->trigger('my-channel', 'my-event', $data);
+        return $this->sendResponse('Success', 'pesan terkirim', $data, 200);
     }
 }
